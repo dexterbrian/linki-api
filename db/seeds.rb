@@ -5,7 +5,7 @@ puts "🌱 Seeding houses..."
 
     # Seeding users
     user = User.create(
-        name: Faker::Internet.username,
+        username: Faker::Internet.username,
         password: '123456'
     )
 
