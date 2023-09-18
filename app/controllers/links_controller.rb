@@ -9,7 +9,7 @@ class LinksController < ApplicationController
   end
 
   def show
-    links = Link.find_by(user_id: session[:user_id])
+    links = Link.where(user_id: session[:user_id])
     if links
       render json: links, only: [:title, :url]
     else
