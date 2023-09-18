@@ -9,6 +9,12 @@ class LinksController < ApplicationController
   end
 
   def show
+    links = Link.find_by(user_id: session[:user_id])
+    if links
+      render json: links, only: [:title, :url]
+    else
+      render json: { error: "Link not found" }, status: :not_found
+    end
   end
 
   def update
