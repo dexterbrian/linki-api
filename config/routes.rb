@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users, only: [ :create, :show]
   resources :links
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/me", to: "users#show"
 end
