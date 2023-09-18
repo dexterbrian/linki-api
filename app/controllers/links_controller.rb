@@ -18,6 +18,17 @@ class LinksController < ApplicationController
   end
 
   def update
+    begin
+      link = Link.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: "Link not found" }, status: :not_found
+    else
+      if link.update(title: params[:title], url: params[:url])
+        render json: link, only: [ :title, :url ]
+      else
+        render json: { error: "Validation errors" }, status: :not_found
+      end
+    end
   end
 
   def delete
