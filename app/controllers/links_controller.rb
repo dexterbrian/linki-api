@@ -31,6 +31,6 @@ class LinksController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
   end
 end
