@@ -32,5 +32,16 @@ class LinksController < ApplicationController
   end
 
   def destroy
+    begin
+      link = Link.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: "Link not found" }, status: :not_found
+    else
+      if link.destroy
+        head :no_content
+      else
+        render json: { error: "Failed to delete the link" }, status: :not_found
+      end
+    end
   end
 end
