@@ -1,10 +1,16 @@
 class LinksController < ApplicationController
   def create
-    link = Link.create(user_id: session[:user_id], title: params[:title], url: params[:url])
-    if link
-      render json: link, only: [:title, :url]
+    user = User.find_by(username: params[:username])
+
+    if user
+      link = Link.create(user_id: user.id, title: params[:title], url: params[:url])
+      if link
+        render json: link, only: [:title, :url]
+      else
+        render json: { error: "validation errors" }, status: :not_found
+      end
     else
-      render json: { error: "validation errors" }, status: :not_found
+      render json: { error: "User not found" }, status: :not_found
     end
   end
 
