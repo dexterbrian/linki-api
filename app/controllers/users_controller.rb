@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   def create
-    user = User.create(username: params[:username], password: params[:password])
-    if user
-      render json: user, only: [:username]
+    existingUser = User.find_by(username: params[:username])
+
+    if existingUser
+      render json: { error: "User already exists" }, status: :not_found
     else
-      render json: { error: "validation errors" }, status: :not_found
+      user = User.create(username: params[:username], password: params[:password])
+      if user
+        render json: user, only: [:username]
+      else
+        render json: { error: "validation errors" }, status: :not_found
+      end
     end
   end
 
