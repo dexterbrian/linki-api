@@ -2,7 +2,7 @@
 
 ## Author
 
-- Author: [Your Name]
+- Author: Brian Waweru
 
 ## Project Description
 
