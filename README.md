@@ -1,5 +1,9 @@
 # Linki API
 
+## Author
+
+- Author: [Your Name]
+
 ## Project Description
 
 This is a Ruby on Rails API backend project for the [Linki App](https://placeholder.link).
